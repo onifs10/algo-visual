@@ -6,10 +6,6 @@ const rootDiv = document.getElementById("root");
 //==> states <==//
 let b = createState(1) // returns a reactive object with property value
 let objectState = createState({ test: "like" })
-let arrayState = createState([])
-
-
-let result = 0;
 // create count element
 const countDiv = document.createElement('div');
 countDiv.classList.add('countDiv') 
@@ -42,18 +38,6 @@ reactive(() => {
     indexOne = objectState.value.test
 })
 
-reactive(() => {
-     arrayState.value.forEach(element => {
-        console.log(element)
-    });
-})
-
-arrayState.value.push('sa')
-arrayState.value.unshift("2")
-arrayState.value[0] = 'a'
-// objectState.value.test = 1;
-
-console.log(indexOne)
 
 // mount elements to dom
 rootDiv.appendChild(countDiv);
