@@ -1,7 +1,6 @@
 // array reactivity similar to that in vuejs code base;
 const arrayProto = Array.prototype
 const arrayMethods = Object.create(arrayProto)
-
 const methodsToPatch = [
   'push',
   'pop',
