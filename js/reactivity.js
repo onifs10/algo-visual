@@ -51,8 +51,7 @@ function def (obj, key, val, enumerable) {
   })
 }
 
-
-window.observe = (obj) => {
+const observe = (obj) => {
   let dep = new Dep();
 
   const thisObj = {
@@ -60,8 +59,9 @@ window.observe = (obj) => {
     defineProps,
     defineArray 
   }
-  function defineProps  (obj){
-    for(propName in obj){
+  function defineProps(obj) {
+ 
+    for(let propName in obj){
       let realValue = obj[propName];
       Object.defineProperty(obj, propName, {
         get (){
@@ -119,7 +119,7 @@ class Dep {
 
 let activeUpdate;
 
-window.reactive = (update) =>  {
+export const reactive = (update) =>  {
   function wrappedUpdate (){
     activeUpdate =  wrappedUpdate;        
     update()
@@ -128,7 +128,7 @@ window.reactive = (update) =>  {
   wrappedUpdate();
 }
 
-window.createState = (value) => {
+export const createState = (value) => {
     const reactiveObject = {
         value
     }
@@ -136,7 +136,6 @@ window.createState = (value) => {
     return reactiveObject
 }
  
-
 
 
 

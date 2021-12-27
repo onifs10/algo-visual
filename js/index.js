@@ -1,3 +1,5 @@
+import { createState, reactive } from "./reactivity.js";
+
 // do not set the reactive property in a reactive environment
 const rootDiv = document.getElementById("root");
 
