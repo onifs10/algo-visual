@@ -17,6 +17,17 @@ body{
 
 }
 
+.w-full{
+    width: 100%;
+}
+
+.m-auto {
+    margin:  0 auto;
+}
+.max-w{
+    min-width : 300px;
+    max-width : 600px;
+}
 .pages_link{
     ul{
         list-style: "-> ";
@@ -25,4 +36,16 @@ body{
             color: green;
         }
     }
+}
+
+
+button{
+  --background : green;
+  padding : .5rem 1rem;
+  outline: none;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--background);
 }
