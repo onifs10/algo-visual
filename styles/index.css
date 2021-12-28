@@ -54,3 +54,21 @@ button {
   background-color: var(--background);
 }
 /*# sourceMappingURL=index.css.map */
+
+.title{
+  font-size: 24px;
+  color: green;
+}
+
+.back{
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  font-size: 20px;
+  color: green;
+}
+
+.back:hover{
+  color: red;
+}
