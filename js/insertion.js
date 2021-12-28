@@ -3,27 +3,33 @@ import { Chart, getRandomInt } from "./utils.js";
 
 customElements.define('chart-div', Chart)
 
-function* bubbleSort(nums, snap) {
-  let swap = false;
-  let iteration = 0;
+
+function* insertionSort(nums, snap) {
+  // code goes here
+  if (nums.length === 0) {
+    return nums;
+  }
+  let i = 1;
+  let j = 0;
   do {
-    swap = false;
-      for (let i = 0; i < nums.length - (1 + iteration); i++) {
-        // snap shot
-        yield false;
-        if (nums[i] > nums[i + 1]) {
-        [nums[i], nums[i + 1]] = [nums[i + 1], nums[i]];
-        snap && snap()
-        swap = true;
+    j = i;
+    do {
+      // swaping backwards from index i
+      if (nums[j] < nums[j - 1]) {
+          [nums[j], nums[j - 1]] = [nums[j - 1], nums[j]];
+          snap && snap()
+          yield false
+          j -= 1;
+      } else {
+        j = 0;
       }
-    }
-    iteration += 1;
-  } while (swap);
+    } while (j !== 0);
+    i += 1;
+  } while (i < nums.length);
     yield true;
 }
 
-
-const bubbleChart = document.querySelector('chart-div');
+const ChartDiv = document.querySelector('chart-div');
 const button = document.querySelector('button')
 const array = createState([]);
 const snapState = createState(0);
@@ -38,19 +44,19 @@ const addNumbers = () => {
 addNumbers();
 
 reactive(() => {
-    bubbleChart.addCount(snapState.value)
-    bubbleChart.clear()
+    ChartDiv.addCount(snapState.value)
+    ChartDiv.clear()
     for (let i = 0; i <= array.value.length; i++){
         let newDiv = document.createElement('div');
         newDiv.setAttribute('style' , `--height: ${array.value[i]}%`)
-        bubbleChart.addDiv(newDiv)   
+        ChartDiv.addDiv(newDiv)   
     }
 })
 
 const snap = () => {
     snapState.value++
 }
-let sorting = bubbleSort(array.value, snap);
+let sorting = insertionSort(array.value, snap);
 
 let id;
 
@@ -60,7 +66,7 @@ const play = () => {
         done.value = !done.value;
         snapState.value = 0;
         addNumbers()
-        sorting = bubbleSort(array.value, snap)
+        sorting = insertionSort(array.value, snap)
     }
     if (id) return;
     id = setInterval(() => {
