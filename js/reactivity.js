@@ -59,7 +59,6 @@ const observe = (obj) => {
     defineArray 
   }
   function defineProps(obj) {
- 
     for(let propName in obj){
       let realValue = obj[propName];
       Object.defineProperty(obj, propName, {
